@@ -88,6 +88,7 @@
         @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
         @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
+        @keyframes popIn { from { transform: scale(0.85); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
         /* ===== CARDS ===== */
         .card { background: var(--bg-card); padding: 1.5rem; border-radius: 14px; border: 1px solid var(--border-color); transition: all 0.3s ease; }
@@ -212,7 +213,7 @@
         .change-negative { color: var(--danger); font-weight: 700; }
         .payment-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 16px; }
 
-        /* ===== [BARU] NOMINAL QUICK BUTTONS ===== */
+        /* ===== NOMINAL QUICK BUTTONS ===== */
         .nominal-buttons { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 10px 0; }
         .nominal-btn { padding: 8px 4px; border: 1px solid var(--border-color); background: var(--bg-light); border-radius: 8px; cursor: pointer; font-size: 0.78rem; font-weight: 600; color: var(--text-secondary); font-family: 'Figtree', sans-serif; transition: all 0.2s; text-align: center; }
         .nominal-btn:hover { border-color: var(--primary); color: var(--primary); background: var(--primary-glow); }
@@ -230,16 +231,21 @@
         .btn-cancel { background: var(--danger); color: white; }
         .btn-cancel:hover { background: #dc2626; }
 
-        /* ===== [BARU] KUPON PAYMENT SECTION ===== */
-        .coupon-section { padding: 16px; background: var(--bg-light); border-radius: 10px; margin: 16px 0; }
-        .coupon-input-wrapper { display: flex; gap: 8px; margin-bottom: 12px; }
-        .coupon-input-wrapper input { flex: 1; padding: 10px 12px; border: 1px solid var(--border-color); border-radius: 9px; font-size: 0.9rem; color: var(--text-primary); background: var(--bg-input); font-family: 'Figtree', sans-serif; text-transform: uppercase; }
-        .coupon-input-wrapper input:focus { border-color: var(--primary); outline: none; box-shadow: 0 0 0 3px var(--primary-glow); }
-        .coupon-validate-btn { padding: 10px 16px; background: var(--primary); color: white; border: none; border-radius: 9px; font-weight: 600; cursor: pointer; font-family: 'Figtree', sans-serif; font-size: 0.9rem; white-space: nowrap; }
-        .coupon-validate-btn:hover { background: var(--primary-dark); }
-        .coupon-result { padding: 10px 14px; border-radius: 8px; font-size: 0.85rem; font-weight: 500; }
-        .coupon-result.valid { background: rgba(16,185,129,0.15); color: #34d399; border: 1px solid rgba(16,185,129,0.3); }
-        .coupon-result.invalid { background: rgba(239,68,68,0.15); color: #f87171; border: 1px solid rgba(239,68,68,0.3); }
+        /* ===== DRINK OFFER MODAL ===== */
+        .drink-offer-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.75); z-index: 3000; justify-content: center; align-items: center; padding: 15px; }
+        .drink-offer-content { background: var(--bg-modal); padding: 32px 28px; border-radius: 20px; width: 100%; max-width: 400px; box-shadow: var(--shadow-lg); border: 1px solid rgba(16,185,129,0.25); animation: popIn 0.35s cubic-bezier(0.34,1.56,0.64,1); position: relative; text-align: center; }
+        .drink-offer-icon { width: 72px; height: 72px; background: rgba(16,185,129,0.12); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 18px; font-size: 2.2rem; border: 2px solid rgba(16,185,129,0.2); }
+        .drink-offer-title { font-family: 'Outfit', sans-serif; font-size: 1.2rem; font-weight: 700; color: var(--text-primary); margin-bottom: 8px; }
+        .drink-offer-subtitle { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; margin-bottom: 16px; }
+        .drink-price-badge { display: inline-flex; align-items: center; gap: 10px; background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.2); border-radius: 12px; padding: 10px 18px; margin-bottom: 22px; }
+        .drink-price-original { color: var(--text-muted); text-decoration: line-through; font-size: 0.95rem; }
+        .drink-price-new { color: var(--success); font-size: 1.6rem; font-weight: 800; font-family: 'Outfit', sans-serif; }
+        .drink-price-save { background: rgba(16,185,129,0.15); color: var(--success); font-size: 0.72rem; font-weight: 700; padding: 3px 8px; border-radius: 20px; }
+        .drink-offer-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .drink-btn-no { padding: 13px; background: var(--bg-light); color: var(--text-secondary); border: 1px solid var(--border-color); border-radius: 10px; font-weight: 600; cursor: pointer; font-family: 'Figtree', sans-serif; font-size: 0.9rem; transition: all 0.2s; }
+        .drink-btn-no:hover { border-color: var(--primary); color: var(--primary); }
+        .drink-btn-yes { padding: 13px; background: var(--success); color: white; border: none; border-radius: 10px; font-weight: 700; cursor: pointer; font-family: 'Figtree', sans-serif; font-size: 0.9rem; transition: background 0.2s; display: flex; align-items: center; justify-content: center; gap: 7px; }
+        .drink-btn-yes:hover { background: #0d9488; }
 
         /* ===== RECEIPT MODAL ===== */
         .receipt-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 2000; justify-content: center; align-items: center; animation: fadeIn 0.3s ease; padding: 15px; }
@@ -266,9 +272,7 @@
         .welcome-section h1 { font-family: 'Outfit', sans-serif; font-size: 1.9rem; font-weight: 800; margin-bottom: 4px; letter-spacing: -0.02em; }
         .welcome-section p { color: var(--text-secondary); font-size: 0.9rem; }
 
-        /* ===== [BARU] DASHBOARD TREND TOGGLE ===== */
-        .dashboard-toggle-bar { display: flex; align-items: center; justify-content: flex-end; gap: 10px; margin-bottom: 14px; }
-        .dashboard-toggle-bar label { font-size: 0.85rem; color: var(--text-secondary); cursor: pointer; display: flex; align-items: center; gap: 8px; }
+        /* ===== TOGGLE ===== */
         .toggle-switch { position: relative; display: inline-block; width: 48px; height: 24px; }
         .toggle-switch input { opacity: 0; width: 0; height: 0; }
         .toggle-slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #333340; transition: .4s; border-radius: 24px; }
@@ -346,7 +350,7 @@
         .inventory-summary-bar { background: var(--bg-card); border-radius: 12px; padding: 14px 18px; display: flex; align-items: center; gap: 14px; border: 1px solid rgba(239,68,68,0.2); margin-bottom: 16px; }
         .inventory-summary-bar.ok { border-color: rgba(16,185,129,0.2); }
 
-        /* ===== [BARU] KUPON PAGE ===== */
+        /* ===== COUPON PAGE ===== */
         .coupon-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 18px; }
         .coupon-stat-card { background: var(--bg-card); border-radius: 12px; padding: 16px; border: 1px solid var(--border-color); text-align: center; }
         .coupon-stat-value { font-family: 'Outfit', sans-serif; font-size: 2rem; font-weight: 800; color: var(--text-primary); }
@@ -378,6 +382,7 @@
             .product-image { height: 120px; }
             .notification-container { left: 10px; right: 10px; width: auto; }
             .nominal-buttons { grid-template-columns: repeat(2, 1fr); }
+            .drink-offer-buttons { grid-template-columns: 1fr; }
         }
         @media (hover: none) {
             .product-card:hover { border-color: var(--primary); box-shadow: none; transform: none; }
@@ -410,7 +415,6 @@
             <li data-page="pos"><i class="fas fa-shopping-cart"></i><span>Kasir</span></li>
             <li data-page="products"><i class="fas fa-box"></i><span>Produk & Stok</span></li>
             <li data-page="transactions"><i class="fas fa-history"></i><span>Transaksi</span></li>
-            <!-- [BARU] Menu Kupon -->
             <li data-page="coupons"><i class="fas fa-ticket-alt"></i><span>Kupon</span></li>
             <li data-page="reports"><i class="fas fa-chart-bar"></i><span>Laporan</span></li>
         </ul>
@@ -469,7 +473,7 @@
     </div>
 </div>
 
-<!-- [BARU] Coupon Add Modal -->
+<!-- Coupon Add Modal -->
 <div id="couponModal" class="modal">
     <div class="modal-content">
         <span class="close" onclick="document.getElementById('couponModal').style.display='none'">&times;</span>
@@ -533,13 +537,12 @@
             <h3>Struk</h3>
             <div class="config-toggle"><span>Tampilkan struk setelah bayar</span><label class="toggle-switch"><input type="checkbox" id="showReceiptAfterPayment" checked><span class="toggle-slider"></span></label></div>
         </div>
-        <!-- [BARU] Tampilan Dashboard -->
         <div class="config-section">
             <h3>Tampilan Dashboard</h3>
             <div class="config-toggle">
                 <div>
                     <div style="font-weight:500;color:var(--text-primary);margin-bottom:3px;">Tampilkan Trend</div>
-                    <div style="font-size:0.8rem;color:var(--text-secondary);">Persentase naik/turun di kartu Total Produk, Transaksi, dan Pendapatan</div>
+                    <div style="font-size:0.8rem;color:var(--text-secondary);">Persentase naik/turun di kartu statistik</div>
                 </div>
                 <label class="toggle-switch"><input type="checkbox" id="configShowTrend"><span class="toggle-slider"></span></label>
             </div>
@@ -565,7 +568,6 @@
         <div class="payment-details">
             <div class="detail-row"><span>Total Belanja:</span><span class="total-amount" id="modalTotalAmount">Rp 0</span></div>
         </div>
-        <!-- Payment Methods: Cash, QRIS -->
         <div class="payment-methods" id="paymentMethodsGrid">
             <button class="payment-method-btn active" id="cashBtn" onclick="window.selectPaymentMethod('cash', event)"><i class="fas fa-money-bill-wave"></i> Tunai</button>
             <button class="payment-method-btn" id="qrisPaymentBtn" onclick="window.selectPaymentMethod('qris', event)"><i class="fas fa-qrcode"></i> QRIS</button>
@@ -577,7 +579,6 @@
                 <label>Jumlah Bayar</label>
                 <input type="number" id="paymentAmount" class="payment-input" placeholder="Masukkan jumlah bayar" step="0.01" autofocus>
             </div>
-            <!-- [BARU] Nominal Quick Buttons -->
             <div class="nominal-buttons" id="nominalButtons">
                 <button class="nominal-btn" onclick="window.setNominal(5000)">Rp 5.000</button>
                 <button class="nominal-btn" onclick="window.setNominal(10000)">Rp 10.000</button>
@@ -609,12 +610,38 @@
     </div>
 </div>
 
+<!-- ===== DRINK OFFER MODAL ===== -->
+<div id="drinkOfferModal" class="drink-offer-modal">
+    <div class="drink-offer-content">
+        <span onclick="window.closeDrinkOffer()" style="position:absolute;right:16px;top:12px;font-size:22px;cursor:pointer;color:var(--text-muted);line-height:1;transition:color 0.2s;" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--text-muted)'">&times;</span>
+        <div class="drink-offer-icon">🧋</div>
+        <div class="drink-offer-title">Tambah Minuman?</div>
+        <div class="drink-offer-subtitle">
+            Karena pakai kupon Balinese Ricebowl,<br>
+            dapatkan <strong style="color:var(--text-primary);">Sanny Tea</strong> dengan harga spesial!
+        </div>
+        <div class="drink-price-badge">
+            <span class="drink-price-original">Rp 4.000</span>
+            <span class="drink-price-new">Rp 2.000</span>
+            <span class="drink-price-save">HEMAT 50%</span>
+        </div>
+        <div class="drink-offer-buttons">
+            <button class="drink-btn-no" onclick="window.closeDrinkOffer()">
+                Tidak, Terima Kasih
+            </button>
+            <button class="drink-btn-yes" onclick="window.addDiscountedDrink()">
+                <i class="fas fa-plus"></i> Ya, Tambah!
+            </button>
+        </div>
+    </div>
+</div>
+
 <!-- Receipt Modal -->
 <div id="receiptModal" class="receipt-modal">
     <div class="receipt-content">
         <div class="receipt-header">
             <div class="receipt-store">BALINESE TASTE</div>
-            <div style="font-size:0.85rem;color:var(--text-secondary);">Jl. Contoh No. 123</div>
+            <div style="font-size:0.85rem;color:var(--text-secondary);">Kelompok 23, Ruang 6</div>
             <div style="font-size:0.85rem;color:var(--text-secondary);">Telp: 0812-3456-7890</div>
         </div>
         <div class="receipt-info" id="receiptInfo"></div>
@@ -634,6 +661,14 @@
     const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9yd2ZnbnJ6ZWtmd2hwZGh3YmtiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwNjA1MDYsImV4cCI6MjA4ODYzNjUwNn0.us6ANXBLDc59Q8jMVldnZ5b3_NZmtwEgn1tSyUuaZjA'
     const supabase = createClient(supabaseUrl, supabaseKey)
 
+    // ===== KUPON CONFIG =====
+    // Sesuaikan ID produk dengan database Anda
+    const COUPON_CONFIG = {
+        freeProductId: 1,           // ID Balinese Ricebowl (produk GRATIS)
+        drinkProductId: 2,          // ID Sanny Tea (tawaran minuman)
+        drinkDiscountedPrice: 2000  // Harga spesial Sanny Tea saat pakai kupon
+    };
+
     // ===== GLOBAL STATE =====
     let currentCart = [];
     let currentPage = 'dashboard';
@@ -643,7 +678,7 @@
     let selectedPaymentMethod = 'cash';
     let currentReceiptData = null;
     let transactionCounter = 1;
-    let validatedCoupon = null; // [BARU] Kupon yang sudah divalidasi
+    let validatedCoupon = null;
 
     // ===== TAX CONFIG =====
     let taxConfig = { enabled: false, rate: 10, name: 'PPN' };
@@ -655,8 +690,6 @@
         payment: { qrisEnabled: false }
     };
 
-    // ===== [BARU] DASHBOARD TREND PREFERENCE =====
-    // [UBAH] Default false — trend tersembunyi saat pertama buka
     let showTrend = localStorage.getItem('showDashboardTrend') === 'true';
 
     // ===== TAX FUNCTIONS =====
@@ -719,12 +752,10 @@
         taxConfig = { ...taxConfig, ...newTax };
         localStorage.setItem('taxConfig', JSON.stringify(taxConfig));
         appConfig.receipt.showAfterPayment = document.getElementById('showReceiptAfterPayment').checked;
-        // [BARU] Simpan setting trend dashboard dari modal settings
         const newShowTrend = document.getElementById('configShowTrend').checked;
         if (newShowTrend !== showTrend) {
             showTrend = newShowTrend;
             localStorage.setItem('showDashboardTrend', showTrend ? 'true' : 'false');
-            // Update tampilan jika sedang di dashboard
             document.querySelectorAll('.trend-item').forEach(el => {
                 el.style.display = showTrend ? 'block' : 'none';
             });
@@ -753,7 +784,6 @@
         const qrisBtn = document.getElementById('qrisPaymentBtn');
         if (qrisBtn) qrisBtn.style.display = qrisEnabled ? '' : 'none';
         if (!qrisEnabled && selectedPaymentMethod === 'qris') window.selectPaymentMethod('cash', null);
-        // Sesuaikan grid payment methods
         updatePaymentMethodsGrid();
     }
 
@@ -761,11 +791,11 @@
         const grid = document.getElementById('paymentMethodsGrid');
         if (!grid) return;
         const qrisEnabled = appConfig.payment?.qrisEnabled === true;
-        const visibleCount = 1 + (qrisEnabled ? 1 : 0); // cash + qris?
+        const visibleCount = 1 + (qrisEnabled ? 1 : 0);
         grid.style.gridTemplateColumns = `repeat(${visibleCount}, 1fr)`;
     }
 
-    // ===== DATE WITA FORMAT =====
+    // ===== DATE/TIME =====
     function formatDateToWITA(dateString) {
         const date = new Date(dateString);
         const witaDate = new Date(date.getTime() + (8 * 60 * 60 * 1000));
@@ -866,7 +896,6 @@
         } catch(e) { transactions = []; }
     }
 
-    // ===== [BARU] LOAD COUPONS =====
     async function loadCoupons() {
         try {
             const { data, error } = await supabase.from('coupons').select('*, products(name, price)').order('created_at', { ascending: false });
@@ -908,6 +937,8 @@
                 const modal = document.getElementById(id);
                 if (e.target === modal) modal.style.display = 'none';
             });
+            const drinkModal = document.getElementById('drinkOfferModal');
+            if (e.target === drinkModal) window.closeDrinkOffer();
         });
 
         document.getElementById('productForm').addEventListener('submit', function(e) { e.preventDefault(); handleProductSubmit(); });
@@ -957,7 +988,6 @@
                     <h1>Dashboard</h1>
                     <p>Selamat datang di Balinese Taste! Ringkasan bisnis Anda.</p>
                 </div>
-                <!-- Trend dikontrol via Settings -->
                 <div class="dashboard-cards">
                     <div class="stat-card">
                         <div class="card-top"><div class="card-icon"><i class="fas fa-box"></i></div></div>
@@ -983,7 +1013,6 @@
                             <span class="trend ${stats.revenueTrend >= 0 ? 'positive' : 'negative'} trend-item" style="display:${showTrend ? 'block' : 'none'};">${stats.revenueTrend >= 0 ? '+' : ''}${stats.revenueTrend}% vs kemarin</span>
                         </div>
                     </div>
-                    <!-- Card Stok Menipis — TIDAK terpengaruh toggle -->
                     <div class="stat-card">
                         <div class="card-top"><div class="card-icon red"><i class="fas fa-exclamation-triangle"></i></div></div>
                         <div class="card-info">
@@ -1009,7 +1038,6 @@
         });
     }
 
-    // ===== [BARU] TOGGLE TREND =====
     window.toggleTrend = function(checked) {
         showTrend = checked;
         localStorage.setItem('showDashboardTrend', checked ? 'true' : 'false');
@@ -1055,7 +1083,7 @@
     async function getTransactionItems(transactionId) {
         try {
             const { data } = await supabase.from('transaction_items').select('*, products(name)').eq('transaction_id', transactionId);
-            return (data||[]).map(item => ({ name: item.products?.name || 'Produk', quantity: item.quantity }));
+            return (data||[]).map(item => ({ name: item.products?.name || 'Produk', quantity: item.quantity, price: item.price_at_time }));
         } catch(e) { return []; }
     }
 
@@ -1108,7 +1136,7 @@
                         <div style="display:flex;gap:6px;align-items:center;">
                             <div style="flex:1;display:flex;align-items:center;background:var(--bg-input);border:1px solid var(--border-color);border-radius:9px;padding:0 10px;transition:border-color 0.2s;" id="couponInputWrapper">
                                 <i class="fas fa-ticket-alt" style="color:var(--text-muted);font-size:0.85rem;margin-right:7px;"></i>
-                                <input type="text" id="cartCouponInput" placeholder="Kode kupon..." 
+                                <input type="text" id="cartCouponInput" placeholder="Kode kupon..."
                                     style="border:none;background:none;outline:none;width:100%;font-size:0.85rem;color:var(--text-primary);font-family:'Figtree',sans-serif;padding:8px 0;text-transform:uppercase;"
                                     oninput="this.value=this.value.toUpperCase()"
                                     onkeydown="if(event.key==='Enter')window.cartValidateCoupon()">
@@ -1133,7 +1161,7 @@
     function productImageHtml(product, height = '140px') {
         if (product.image_url) {
             return `<div class="product-image" style="height:${height};">
-                <img src="${escapeHtml(product.image_url)}" alt="${escapeHtml(product.name||'')}" 
+                <img src="${escapeHtml(product.image_url)}" alt="${escapeHtml(product.name||'')}"
                      onerror="this.parentElement.innerHTML='<i class=\\'fas fa-box fallback-icon\\'></i>'">
             </div>`;
         }
@@ -1185,7 +1213,7 @@
         const product = products.find(p => p.id === productId);
         if (!product) return;
         if ((product.stock||0) <= 0) { showNotification('Stok habis!', 'error'); return; }
-        const existing = currentCart.find(i => i.id === productId);
+        const existing = currentCart.find(i => i.id === productId && !i.isCoupon && !i.isDiscountedItem);
         if (existing) {
             if (existing.quantity >= product.stock) { showNotification('Stok tidak mencukupi!', 'error'); return; }
             existing.quantity++;
@@ -1205,44 +1233,68 @@
         updateCartSummary();
     }
 
+    // ===== RENDER CART (dengan label kupon & diskon) =====
     function renderCart() {
         if (!currentCart.length) return `<div class="empty-cart"><i class="fas fa-shopping-cart"></i><p>Keranjang kosong</p><small>Klik produk untuk menambahkan</small></div>`;
-        return currentCart.map(item => `
+
+        return currentCart.map(item => {
+            let priceLabel = '';
+            if (item.isCoupon) {
+                priceLabel = '<span style="color:var(--success);font-size:0.75rem;font-weight:600;">✓ GRATIS (Kupon)</span>';
+            } else if (item.isDiscountedItem) {
+                priceLabel = `<span style="font-size:0.72rem;">
+                    <span style="text-decoration:line-through;color:var(--text-muted);">Rp ${formatNumber(item.originalPrice)}</span>
+                    <span style="color:var(--warning);font-weight:700;margin-left:3px;">Rp ${formatNumber(item.price)}</span>
+                    <span style="background:rgba(245,158,11,0.15);color:var(--warning);padding:1px 5px;border-radius:8px;font-size:0.65rem;margin-left:3px;">Diskon Kupon</span>
+                </span>`;
+            } else {
+                priceLabel = `Rp ${formatNumber(item.price)}`;
+            }
+
+            const isSpecial = item.isCoupon || item.isDiscountedItem;
+
+            return `
             <div class="cart-item">
                 <div class="cart-item-info">
                     <h4>${escapeHtml(item.name)}</h4>
-                    <div class="cart-item-price">${item.isCoupon ? '<span style="color:var(--success);">GRATIS (Kupon)</span>' : 'Rp ' + formatNumber(item.price)}</div>
+                    <div class="cart-item-price">${priceLabel}</div>
                 </div>
                 <div class="cart-item-controls">
-                    ${item.isCoupon 
-                        ? `<span style="font-size:0.8rem;color:var(--text-muted);">1x</span>` 
+                    ${isSpecial
+                        ? `<span style="font-size:0.8rem;color:var(--text-muted);padding:0 4px;">1x</span>`
                         : `<button onclick="window.updateCartItemQuantity(${item.id},-1)"><i class="fas fa-minus"></i></button>
                            <span class="item-quantity">${item.quantity}</span>
                            <button onclick="window.updateCartItemQuantity(${item.id},1)" ${item.quantity >= item.stock ? 'disabled' : ''}><i class="fas fa-plus"></i></button>`
                     }
-                    <button class="remove-btn" onclick="window.removeFromCart(${item.id}, ${!!item.isCoupon})"><i class="fas fa-trash"></i></button>
+                    <button class="remove-btn" onclick="window.removeFromCart(${item.id}, ${!!item.isCoupon}, ${!!item.isDiscountedItem})"><i class="fas fa-trash"></i></button>
                 </div>
                 <div class="cart-item-subtotal">${item.isCoupon ? 'Rp 0' : 'Rp ' + formatNumber(item.price * item.quantity)}</div>
-            </div>`).join('');
+            </div>`;
+        }).join('');
     }
 
     window.updateCartItemQuantity = function(productId, change) {
-        const item = currentCart.find(i => i.id === productId);
-        if (!item || item.isCoupon) return;
+        const item = currentCart.find(i => i.id === productId && !i.isCoupon && !i.isDiscountedItem);
+        if (!item) return;
         const nq = item.quantity + change;
-        if (nq <= 0) { window.removeFromCart(productId, false); return; }
+        if (nq <= 0) { window.removeFromCart(productId, false, false); return; }
         if (nq > item.stock) { showNotification('Stok tidak mencukupi!', 'error'); return; }
         item.quantity = nq;
         updateCartDisplay();
     };
 
-    window.removeFromCart = function(productId, isCoupon = false) {
+    // ===== REMOVE FROM CART (handle kupon & diskon) =====
+    window.removeFromCart = function(productId, isCoupon = false, isDiscountedItem = false) {
         if (isCoupon) {
-            // Remove coupon item dan reset validasi
-            currentCart = currentCart.filter(i => !i.isCoupon);
+            // Hapus item kupon → otomatis hapus juga item diskon minuman
+            currentCart = currentCart.filter(i => !i.isCoupon && !i.isDiscountedItem);
             validatedCoupon = null;
+            resetCartCouponUI();
+            showNotification('Kupon dan item terkait dihapus dari keranjang', 'info');
+        } else if (isDiscountedItem) {
+            currentCart = currentCart.filter(i => !(i.id === productId && i.isDiscountedItem));
         } else {
-            currentCart = currentCart.filter(i => i.id !== productId || i.isCoupon);
+            currentCart = currentCart.filter(i => !(i.id === productId && !i.isCoupon && !i.isDiscountedItem));
         }
         updateCartDisplay();
         updatePOSButtonState();
@@ -1306,8 +1358,6 @@
         }
         document.getElementById('cashPaymentSection').style.display = method === 'cash' ? 'block' : 'none';
         document.getElementById('qrisPaymentSection').style.display = method === 'qris' ? 'block' : 'none';
-
-        // Tombol Bayar: sembunyikan jika QRIS (sudah ada tombol konfirmasi sendiri)
         const payBtn = document.getElementById('processPaymentBtn');
         if (payBtn) payBtn.style.display = method === 'qris' ? 'none' : 'block';
     };
@@ -1315,13 +1365,9 @@
     window.confirmQRIS = function() { window.processPayment(); };
     window.cancelQRIS = function() { showNotification('QRIS dibatalkan', 'info'); window.selectPaymentMethod('cash', null); };
 
-    // ===== [BARU] NOMINAL QUICK BUTTONS =====
     window.setNominal = function(amount) {
         const inp = document.getElementById('paymentAmount');
-        if (inp) {
-            inp.value = amount;
-            updateChangeDisplay();
-        }
+        if (inp) { inp.value = amount; updateChangeDisplay(); }
     };
 
     function updateChangeDisplay() {
@@ -1346,6 +1392,12 @@
 
         const code = input.value.trim().toUpperCase();
         if (!code) { input.focus(); return; }
+
+        // Cek apakah sudah ada item kupon di keranjang
+        if (currentCart.some(i => i.isCoupon)) {
+            showNotification('Hanya satu kupon per transaksi!', 'warning');
+            return;
+        }
 
         // Loading state
         btn.disabled = true;
@@ -1387,25 +1439,43 @@
                 return;
             }
 
-            // Valid — tampilkan info + tombol gunakan
+            // ✅ VALID — simpan ke validatedCoupon
             validatedCoupon = data;
+
+            // Hapus produk yg sama dari cart (jika ada) sebelum tambah sebagai item gratis
+            currentCart = currentCart.filter(i => i.id !== data.products.id);
+
+            // Tambahkan item gratis ke keranjang
+            currentCart.push({
+                id: data.products.id,
+                name: data.products.name,
+                price: 0,
+                quantity: 1,
+                stock: data.products.stock,
+                isCoupon: true,
+                couponCode: data.code,
+                couponId: data.id
+            });
+            updateCartDisplay();
+            updatePOSButtonState();
+
+            // Update UI input kupon → disable supaya tidak ganda
             wrapper.style.borderColor = 'var(--success)';
             resultEl.style.display = 'block';
             resultEl.innerHTML = `
-                <div style="padding:8px 10px;background:rgba(16,185,129,0.08);border-radius:7px;border:1px solid rgba(16,185,129,0.2);">
-                    <div style="display:flex;align-items:center;gap:6px;font-size:0.8rem;color:#34d399;margin-bottom:6px;">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Kupon valid!</span>
-                    </div>
-                    <div style="font-size:0.82rem;color:var(--text-secondary);margin-bottom:8px;">
-                        <strong style="color:var(--text-primary);">${data.products.name}</strong> gratis
-                    </div>
-                    <button onclick="window.applyCouponAndCheckout()" id="cartUseCouponBtn"
-                        style="width:100%;padding:8px;background:var(--success);color:white;border:none;border-radius:7px;font-weight:700;cursor:pointer;font-family:'Figtree',sans-serif;font-size:0.85rem;display:flex;align-items:center;justify-content:center;gap:6px;transition:background 0.2s;"
-                        onmouseover="this.style.background='#0d9488'" onmouseout="this.style.background='var(--success)'">
-                        <i class="fas fa-bolt"></i> Gunakan Kupon
-                    </button>
+                <div style="display:flex;align-items:center;gap:6px;font-size:0.8rem;color:#34d399;padding:6px 8px;background:rgba(16,185,129,0.08);border-radius:7px;border:1px solid rgba(16,185,129,0.2);">
+                    <i class="fas fa-check-circle"></i>
+                    <span><strong>${escapeHtml(data.products.name)}</strong> ditambahkan GRATIS!</span>
                 </div>`;
+            input.disabled = true;
+            btn.disabled = true;
+            btn.style.opacity = '0.5';
+
+            showNotification(`Kupon valid! ${data.products.name} gratis ditambahkan.`, 'success');
+
+            // Tampilkan tawaran minuman setelah jeda singkat
+            setTimeout(() => window.showDrinkOffer(), 600);
+
         } catch(e) {
             btn.disabled = false;
             btn.textContent = 'Cek';
@@ -1416,102 +1486,57 @@
         }
     };
 
-    // Reset tampilan coupon input di cart (dipanggil setelah transaksi/clear)
+    // ===== RESET COUPON UI =====
     function resetCartCouponUI() {
         const input = document.getElementById('cartCouponInput');
         const resultEl = document.getElementById('cartCouponResult');
         const wrapper = document.getElementById('couponInputWrapper');
-        if (input) input.value = '';
+        const btn = document.getElementById('cartCouponBtn');
+        if (input) { input.value = ''; input.disabled = false; }
         if (resultEl) { resultEl.style.display = 'none'; resultEl.innerHTML = ''; }
         if (wrapper) wrapper.style.borderColor = 'var(--border-color)';
+        if (btn) { btn.disabled = false; btn.style.opacity = '1'; btn.textContent = 'Cek'; }
         validatedCoupon = null;
     }
 
-        // ===== APPLY COUPON & LANGSUNG TRANSAKSI =====
-    window.applyCouponAndCheckout = async function() {
-        if (!validatedCoupon) return;
+    // ===== TAWARAN MINUMAN =====
+    window.showDrinkOffer = function() {
+        // Cek stok Sanny Tea sebelum menawarkan
+        const sannyTea = products.find(p => p.id === COUPON_CONFIG.drinkProductId);
+        if (!sannyTea || (sannyTea.stock || 0) <= 0) return; // Stok habis, skip tawaran
 
-        // Disable tombol supaya tidak dobel klik
-        const btn = document.querySelector('#couponResult .btn-primary');
-        if (btn) { btn.disabled = true; btn.innerHTML = '<span class="loading-spinner"></span>Memproses...'; }
+        // Jangan tawarkan jika Sanny Tea sudah ada di keranjang (item diskon)
+        if (currentCart.some(i => i.id === COUPON_CONFIG.drinkProductId && i.isDiscountedItem)) return;
 
-        // Siapkan cart hanya berisi produk kupon (gratis)
-        const couponCartItem = {
-            id: validatedCoupon.products.id,
-            name: validatedCoupon.products.name,
-            price: 0,
+        const modal = document.getElementById('drinkOfferModal');
+        if (modal) modal.style.display = 'flex';
+    };
+
+    window.closeDrinkOffer = function() {
+        const modal = document.getElementById('drinkOfferModal');
+        if (modal) modal.style.display = 'none';
+    };
+
+    window.addDiscountedDrink = function() {
+        const sannyTea = products.find(p => p.id === COUPON_CONFIG.drinkProductId);
+        if (!sannyTea) { showNotification('Produk tidak ditemukan', 'error'); return; }
+        if ((sannyTea.stock || 0) <= 0) { showNotification('Stok Sanny Tea habis!', 'error'); window.closeDrinkOffer(); return; }
+
+        // Tambahkan Sanny Tea dengan harga spesial
+        currentCart.push({
+            id: sannyTea.id,
+            name: sannyTea.name,
+            price: COUPON_CONFIG.drinkDiscountedPrice,
             quantity: 1,
-            stock: validatedCoupon.products.stock,
-            isCoupon: true,
-            couponCode: validatedCoupon.code,
-            couponId: validatedCoupon.id
-        };
+            stock: sannyTea.stock,
+            isDiscountedItem: true,
+            originalPrice: parseFloat(sannyTea.price) // harga asli untuk tampilan struk
+        });
 
-        // Simpan cart lama, ganti sementara hanya dengan item kupon
-        const savedCart = [...currentCart];
-        currentCart = [couponCartItem];
-
-        try {
-            const transactionCode = `TRX/${String(transactionCounter).padStart(3, '0')}`;
-            const { data: transaction, error: tErr } = await supabase.from('transactions').insert([{
-                transaction_code: transactionCode,
-                total_amount: 0,
-                payment_amount: 0,
-                change_amount: 0,
-                payment_method: 'coupon',
-                status: 'completed'
-            }]).select();
-            if (tErr) throw tErr;
-
-            const { error: iErr } = await supabase.from('transaction_items').insert([{
-                transaction_id: transaction[0].id,
-                product_id: couponCartItem.id,
-                quantity: 1,
-                price_at_time: 0,
-                subtotal: 0
-            }]);
-            if (iErr) throw iErr;
-
-            // Kurangi stok produk
-            const { error: sErr } = await supabase.from('products').update({
-                stock: validatedCoupon.products.stock - 1
-            }).eq('id', couponCartItem.id);
-            if (sErr) throw sErr;
-
-            // Update status kupon -> dipakai
-            await supabase.from('coupons').update({
-                status: 'dipakai',
-                used_at: new Date().toISOString(),
-                transaction_id: transaction[0].id
-            }).eq('id', validatedCoupon.id);
-
-            const receiptData = {
-                transaction: transaction[0],
-                items: [couponCartItem],
-                change: 0,
-                taxConfig: { ...taxConfig }
-            };
-
-            // Reset state
-            currentCart = savedCart; // kembalikan cart lama (tanpa item kupon)
-            validatedCoupon = null;
-            transactionCounter++;
-
-            showNotification('Kupon berhasil digunakan!', 'success');
-            window.closePaymentModal();
-            resetCartCouponUI();
-            if (appConfig.receipt.showAfterPayment) setTimeout(() => showReceipt(receiptData), 300);
-            await loadProducts();
-            await loadTransactions();
-            await loadCoupons();
-            if (currentPage === 'pos') loadPOSPage();
-
-        } catch(e) {
-            console.error(e);
-            currentCart = savedCart; // restore cart jika gagal
-            showNotification('Gagal: ' + e.message, 'error');
-            if (btn) { btn.disabled = false; btn.innerHTML = '<i class="fas fa-bolt"></i> Gunakan Kupon & Transaksi'; }
-        }
+        updateCartDisplay();
+        updatePOSButtonState();
+        window.closeDrinkOffer();
+        showNotification(`${sannyTea.name} (Rp ${formatNumber(COUPON_CONFIG.drinkDiscountedPrice)}) ditambahkan!`, 'success');
     };
 
     // ===== PROCESS PAYMENT =====
@@ -1525,43 +1550,62 @@
         if (selectedPaymentMethod === 'cash') {
             const paymentInput = document.getElementById('paymentAmount');
             paymentAmount = parseFloat(paymentInput?.value) || 0;
-            if (paymentAmount < total) { showNotification('Jumlah bayar kurang!', 'error'); return; }
-        } else if (selectedPaymentMethod === 'coupon') {
-            // Jika hanya ada item kupon (total=0), proses langsung
-            if (total > 0) { showNotification('Kupon tidak bisa digunakan untuk item berbayar lainnya. Kosongkan keranjang dulu atau bayar via tunai/QRIS.', 'warning'); return; }
-            paymentAmount = 0;
-            paymentMethod = 'coupon';
+            // Jika total 0 (hanya item gratis), tidak perlu input uang
+            if (total > 0 && paymentAmount < total) {
+                showNotification('Jumlah bayar kurang!', 'error');
+                return;
+            }
+            if (total === 0) paymentAmount = 0;
         }
 
         const btn = document.getElementById('processPaymentBtn');
         if (btn) { btn.disabled = true; btn.innerHTML = '<span class="loading-spinner"></span>Memproses...'; }
 
         try {
-            const change = selectedPaymentMethod === 'cash' ? paymentAmount - total : 0;
+            const change = selectedPaymentMethod === 'cash' ? Math.max(0, paymentAmount - total) : 0;
             const transactionCode = `TRX/${String(transactionCounter).padStart(3, '0')}`;
 
-            const { data: transaction, error: tErr } = await supabase.from('transactions').insert([{
-                transaction_code: transactionCode, total_amount: total,
-                payment_amount: paymentAmount, change_amount: change,
-                payment_method: paymentMethod, status: 'completed'
-            }]).select();
+            // Jika keranjang hanya berisi item kupon/diskon dan total=0 → method = coupon
+            const hasOnlySpecialItems = currentCart.every(i => i.isCoupon || i.isDiscountedItem);
+            if (total === 0 && hasOnlySpecialItems) paymentMethod = 'coupon';
+
+            // Insert transaksi
+            const { data: transaction, error: tErr } = await supabase
+                .from('transactions')
+                .insert([{
+                    transaction_code: transactionCode,
+                    total_amount: total,
+                    payment_amount: paymentAmount,
+                    change_amount: change,
+                    payment_method: paymentMethod,
+                    status: 'completed'
+                }])
+                .select();
             if (tErr) throw tErr;
 
-            const items = currentCart.map(item => ({
-                transaction_id: transaction[0].id, product_id: item.id,
-                quantity: item.quantity, price_at_time: item.price,
+            // Insert transaction items
+            const itemsToInsert = currentCart.map(item => ({
+                transaction_id: transaction[0].id,
+                product_id: item.id,
+                quantity: item.quantity,
+                price_at_time: item.price,          // 0 untuk kupon, 2000 untuk Sanny Tea diskon
                 subtotal: item.price * item.quantity
             }));
-            const { error: iErr } = await supabase.from('transaction_items').insert(items);
+            const { error: iErr } = await supabase.from('transaction_items').insert(itemsToInsert);
             if (iErr) throw iErr;
 
-            // Update stok produk
+            // Update stok semua produk di keranjang
             for (const item of currentCart) {
-                const { error: sErr } = await supabase.from('products').update({ stock: item.stock - item.quantity }).eq('id', item.id);
+                const currentProduct = products.find(p => p.id === item.id);
+                if (!currentProduct) continue;
+                const { error: sErr } = await supabase
+                    .from('products')
+                    .update({ stock: currentProduct.stock - item.quantity })
+                    .eq('id', item.id);
                 if (sErr) throw sErr;
             }
 
-            // [BARU] Update status kupon jika ada
+            // Update status kupon jika ada item kupon
             const couponItem = currentCart.find(i => i.isCoupon);
             if (couponItem && couponItem.couponId) {
                 await supabase.from('coupons').update({
@@ -1571,17 +1615,34 @@
                 }).eq('id', couponItem.couponId);
             }
 
-            const receiptData = { transaction: transaction[0], items: [...currentCart], change, taxConfig: { ...taxConfig } };
+            // Siapkan data struk
+            const receiptData = {
+                transaction: transaction[0],
+                items: [...currentCart],
+                change,
+                taxConfig: { ...taxConfig }
+            };
+
+            // Reset state
             currentCart = [];
             validatedCoupon = null;
             transactionCounter++;
+
             showNotification('Transaksi berhasil!', 'success');
             window.closePaymentModal();
-            if (appConfig.receipt.showAfterPayment) setTimeout(() => showReceipt(receiptData), 300);
+            resetCartCouponUI();
+
+            // Reload data
             await loadProducts();
             await loadTransactions();
             await loadCoupons();
             if (currentPage === 'pos') loadPOSPage();
+
+            // Tampilkan struk
+            if (appConfig.receipt.showAfterPayment) {
+                setTimeout(() => showReceipt(receiptData), 300);
+            }
+
         } catch(e) {
             console.error(e);
             showNotification('Gagal: ' + e.message, 'error');
@@ -1603,12 +1664,18 @@
                 <div><strong>Metode:</strong> ${methodLabel}</div>
                 ${taxConfig.enabled ? `<div><strong>Pajak:</strong> ${taxConfig.name} ${taxConfig.rate}%</div>` : ''}
             </div>`;
-        document.getElementById('receiptItems').innerHTML = items.map(item =>
-            `<div class="receipt-item">
-                <span>${escapeHtml(item.name)} x${item.quantity}${item.isCoupon ? ' <span style="color:var(--success);font-size:0.75rem;">(Kupon)</span>' : ''}</span>
+        document.getElementById('receiptItems').innerHTML = items.map(item => {
+            let label = '';
+            if (item.isCoupon) {
+                label = ' <span style="color:var(--success);font-size:0.72rem;">[GRATIS/Kupon]</span>';
+            } else if (item.isDiscountedItem) {
+                label = ` <span style="color:var(--warning);font-size:0.72rem;">[Diskon: Rp ${formatNumber(item.originalPrice)}→Rp ${formatNumber(item.price)}]</span>`;
+            }
+            return `<div class="receipt-item">
+                <span>${escapeHtml(item.name)} x${item.quantity}${label}</span>
                 <span>${item.isCoupon ? 'GRATIS' : 'Rp ' + formatNumber(item.price * item.quantity)}</span>
-            </div>`
-        ).join('');
+            </div>`;
+        }).join('');
         const subtotal = items.reduce((s, i) => s + i.price * i.quantity, 0);
         const tax = taxConfig.enabled ? subtotal * (taxConfig.rate / 100) : 0;
         document.getElementById('receiptTotal').innerHTML = `
@@ -1635,7 +1702,12 @@
         const subtotal = items.reduce((s, i) => s + i.price * i.quantity, 0);
         const tax = taxConfig.enabled ? subtotal * (taxConfig.rate / 100) : 0;
         const methodLabel = { cash: 'Tunai', qris: 'QRIS', coupon: 'Kupon' }[transaction.payment_method] || transaction.payment_method;
-        const itemsHtml = items.map(i => `<tr><td>${i.name}${i.isCoupon ? ' (Kupon)' : ''}</td><td>${i.quantity}</td><td>${i.isCoupon ? 'GRATIS' : 'Rp ' + formatNumber(i.price)}</td><td>${i.isCoupon ? 'GRATIS' : 'Rp ' + formatNumber(i.price * i.quantity)}</td></tr>`).join('');
+        const itemsHtml = items.map(i => {
+            let itemNote = '';
+            if (i.isCoupon) itemNote = ' (GRATIS/Kupon)';
+            else if (i.isDiscountedItem) itemNote = ` (Diskon: Rp ${formatNumber(i.originalPrice)}→Rp ${formatNumber(i.price)})`;
+            return `<tr><td>${i.name}${itemNote}</td><td>${i.quantity}</td><td>${i.isCoupon ? 'GRATIS' : 'Rp ' + formatNumber(i.price)}</td><td>${i.isCoupon ? 'GRATIS' : 'Rp ' + formatNumber(i.price * i.quantity)}</td></tr>`;
+        }).join('');
         const w = window.open('', '_blank', 'width=400,height=600');
         w.document.write(`<html><head><title>Struk</title><style>body{font-family:'Courier New',monospace;padding:20px;}.header{text-align:center;margin-bottom:20px;}.store-name{font-size:18px;font-weight:bold;}.items{width:100%;border-collapse:collapse;}.items th,.items td{padding:4px;text-align:left;}.total-row{font-weight:bold;border-top:1px dashed #000;}.footer{text-align:center;margin-top:20px;font-size:11px;}</style></head>
         <body><div class="header"><div class="store-name">BALINESE TASTE</div><div>Jl. Contoh No. 123</div></div>
@@ -1819,8 +1891,7 @@
             </div>`;
     }
 
-    // ===== [BARU] COUPONS PAGE =====
-    // Helper: render rows untuk tabel kupon (bisa dipanggil saat filter)
+    // ===== COUPONS PAGE =====
     function renderCouponTableRows(list) {
         if (!list.length) return '<tr><td colspan="7" style="text-align:center;padding:30px;color:var(--text-muted);"><i class="fas fa-search" style="display:block;font-size:1.8rem;margin-bottom:8px;opacity:0.4;"></i>Tidak ada kupon ditemukan</td></tr>';
         return list.map((c, idx) => `
@@ -1840,23 +1911,14 @@
             </tr>`).join('');
     }
 
-    // Filter kupon berdasarkan search term dan status
     window.filterCoupons = function() {
         const term = (document.getElementById('couponSearchInput')?.value || '').toLowerCase().trim();
         const statusFilter = document.getElementById('couponStatusFilter')?.value || '';
         let filtered = [...coupons];
-        if (term) {
-            filtered = filtered.filter(c =>
-                c.code.toLowerCase().includes(term) ||
-                (c.products?.name || '').toLowerCase().includes(term)
-            );
-        }
-        if (statusFilter) {
-            filtered = filtered.filter(c => c.status === statusFilter);
-        }
+        if (term) filtered = filtered.filter(c => c.code.toLowerCase().includes(term) || (c.products?.name || '').toLowerCase().includes(term));
+        if (statusFilter) filtered = filtered.filter(c => c.status === statusFilter);
         const tbody = document.getElementById('couponTableBody');
         if (tbody) tbody.innerHTML = renderCouponTableRows(filtered);
-        // Update result count
         const countEl = document.getElementById('couponResultCount');
         if (countEl) countEl.textContent = `${filtered.length} kupon`;
     };
@@ -1889,7 +1951,6 @@
                         <div class="coupon-stat-label">Sudah Dipakai</div>
                     </div>
                 </div>
-                <!-- Search & Filter bar -->
                 <div style="display:flex;gap:10px;align-items:center;margin-bottom:12px;flex-wrap:wrap;">
                     <div class="search-box" style="flex:1;min-width:200px;max-width:360px;display:flex;">
                         <i class="fas fa-search"></i>
@@ -1911,25 +1972,21 @@
             </div>`;
     }
 
-    // ===== [BARU] SHOW COUPON MODAL =====
     window.showCouponModal = function() {
         document.getElementById('couponForm').reset();
         document.getElementById('couponModalTitle').innerHTML = '<i class="fas fa-ticket-alt" style="color:var(--primary);margin-right:8px;"></i>Tambah Kupon';
-        // Populate product dropdowns
         const productOptions = products.map(p => `<option value="${p.id}">${escapeHtml(p.name)} (Stok: ${p.stock})</option>`).join('');
         document.getElementById('couponProductId').innerHTML = '<option value="">Pilih produk...</option>' + productOptions;
         document.getElementById('bulkProductId').innerHTML = '<option value="">Pilih produk...</option>' + productOptions;
         document.getElementById('couponModal').style.display = 'block';
     };
 
-    // ===== [BARU] GENERATE COUPON CODE =====
     window.generateCouponCode = function() {
         const prefix = 'KPN';
         const random = Math.random().toString(36).substring(2, 7).toUpperCase();
         document.getElementById('couponCode').value = prefix + random;
     };
 
-    // ===== [BARU] HANDLE COUPON SUBMIT =====
     async function handleCouponSubmit() {
         const code = document.getElementById('couponCode').value.trim().toUpperCase();
         const productId = document.getElementById('couponProductId').value;
@@ -1950,7 +2007,6 @@
         }
     }
 
-    // ===== [BARU] GENERATE BULK COUPONS =====
     window.generateBulkCoupons = async function() {
         const prefix = (document.getElementById('bulkPrefix').value || 'KUPON').toUpperCase();
         const count = parseInt(document.getElementById('bulkCount').value) || 5;
@@ -1958,31 +2014,18 @@
         if (!productId) { showNotification('Pilih produk terlebih dahulu!', 'warning'); return; }
         if (count < 1 || count > 100) { showNotification('Jumlah kupon harus 1-100', 'warning'); return; }
 
-        // Cari nomor urut tertinggi yang sudah ada untuk prefix ini
-        // Contoh: prefix=KUPON → cek KUPON0001, KUPON0002, dll → mulai dari yang belum ada
         let startNumber = 1;
         const existingWithPrefix = coupons
             .filter(c => c.code.startsWith(prefix))
-            .map(c => {
-                const numPart = c.code.slice(prefix.length);
-                const num = parseInt(numPart, 10);
-                return isNaN(num) ? 0 : num;
-            });
-        if (existingWithPrefix.length > 0) {
-            startNumber = Math.max(...existingWithPrefix) + 1;
-        }
+            .map(c => { const numPart = c.code.slice(prefix.length); const num = parseInt(numPart, 10); return isNaN(num) ? 0 : num; });
+        if (existingWithPrefix.length > 0) startNumber = Math.max(...existingWithPrefix) + 1;
 
-        // Tentukan lebar padding berdasarkan jumlah digit angka terbesar
         const maxNum = startNumber + count - 1;
-        const padLen = Math.max(4, String(maxNum).length); // minimal 4  digit
+        const padLen = Math.max(4, String(maxNum).length);
 
         const bulkData = [];
         for (let i = 0; i < count; i++) {
-            bulkData.push({
-                code: `${prefix}${String(startNumber + i).padStart(padLen, '0')}`,
-                product_id: parseInt(productId),
-                status: 'belum dipakai'
-            });
+            bulkData.push({ code: `${prefix}${String(startNumber + i).padStart(padLen, '0')}`, product_id: parseInt(productId), status: 'belum dipakai' });
         }
 
         try {
@@ -1997,7 +2040,6 @@
         } catch(e) { showNotification('Gagal generate massal: ' + e.message, 'error'); }
     };
 
-    // ===== [BARU] DELETE COUPON =====
     window.deleteCoupon = async function(id) {
         const coupon = coupons.find(c => c.id === id);
         if (!coupon) return;
@@ -2066,13 +2108,10 @@
                         </tr></thead>
                         <tbody>
                             <tr><td style="padding:10px;">Tunai</td><td style="padding:10px;">${transactions.filter(t=>t.payment_method==='cash').length}</td><td style="padding:10px;color:var(--primary);font-weight:600;">Rp ${formatNumber(transactions.filter(t=>t.payment_method==='cash').reduce((s,t)=>s+(parseFloat(t.total_amount)||0),0))}</td></tr>
-                            <tr><td style="padding:10px;">QRIS</td><td style="padding:10px;">${transactions.filter(t=>t.payment_method==='qris').length}</td><td style="padding:10px;color:var(--primary);font-weight:600;">Rp ${formatNumber(transactions.filter(t=>t.payment_method==='qris').reduce((s,t)=>s+(parseFloat(t.total_amount)||0),0))}</td></tr>
-                            <!-- [BARU] Kupon di laporan -->
-                            <tr><td style="padding:10px;"><i class="fas fa-ticket-alt" style="color:var(--primary);margin-right:6px;"></i>Kupon</td><td style="padding:10px;">${couponTx.length}</td><td style="padding:10px;color:var(--primary);font-weight:600;">Rp ${formatNumber(couponRevenue)}</td></tr>
+                            <tr><td style="padding:10px;">Kupon</td><td style="padding:10px;">${couponTx.length}</td><td style="padding:10px;color:var(--primary);font-weight:600;">Rp ${formatNumber(couponRevenue)}</td></tr>
                         </tbody>
                     </table>
                 </div>
-                <!-- [BARU] Statistik kupon -->
                 <div class="card" style="margin-top:16px;">
                     <h3 style="margin-bottom:14px;font-weight:600;"><i class="fas fa-ticket-alt" style="color:var(--primary);margin-right:8px;"></i>Statistik Kupon</h3>
                     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;">
@@ -2107,20 +2146,7 @@
         } catch(e) { return []; }
     }
 
-    // ===== EXPORT FUNCTIONS =====
-
-    // Helper: apply style to a range of cells in worksheet
-    function xlsxStyleRange(ws, range, style) {
-        const decoded = XLSX.utils.decode_range(range);
-        for (let R = decoded.s.r; R <= decoded.e.r; R++) {
-            for (let C = decoded.s.c; C <= decoded.e.c; C++) {
-                const addr = XLSX.utils.encode_cell({ r: R, c: C });
-                if (!ws[addr]) ws[addr] = { v: '', t: 's' };
-                ws[addr].s = style;
-            }
-        }
-    }
-
+    // ===== EXPORT EXCEL =====
     window.exportToExcel = async function() {
         if (typeof XLSX === 'undefined') { showNotification('Library Excel tidak tersedia', 'error'); return; }
         showNotification('Mempersiapkan data Excel...', 'info');
@@ -2131,42 +2157,30 @@
         const dateStr = now.toLocaleDateString('id-ID', { day:'2-digit', month:'long', year:'numeric' });
         const timeStr = now.toLocaleTimeString('id-ID', { hour:'2-digit', minute:'2-digit' });
 
-        // ──────────────────────────────────────────────
-        // SHEET 1: JURNAL TRANSAKSI
-        // ──────────────────────────────────────────────
+        // Sheet 1: Jurnal Transaksi
         const txRows = [];
         for (const t of transactions) {
             const items = await getTransactionItems(t.id);
             const methodLabel = { cash: 'Tunai', qris: 'QRIS', coupon: 'Kupon' }[t.payment_method] || t.payment_method;
             const totalNum = parseFloat(t.total_amount) || 0;
-            // one row per item (akuntansi-friendly: tiap item bisa jadi entri sendiri)
             if (items.length === 0) {
-                txRows.push([
-                    t.transaction_code || '-',
-                    formatDateToWITA(t.created_at),
-                    '-', '-', 0, 0,
-                    totalNum, methodLabel
-                ]);
+                txRows.push([t.transaction_code || '-', formatDateToWITA(t.created_at), '-', '-', 0, 0, totalNum, methodLabel]);
             } else {
                 items.forEach((item, idx) => {
                     txRows.push([
-                        idx === 0 ? (t.transaction_code || '-') : '',  // kode hanya di baris pertama
+                        idx === 0 ? (t.transaction_code || '-') : '',
                         idx === 0 ? formatDateToWITA(t.created_at) : '',
-                        item.name || '-',
-                        item.category || '-',
-                        item.quantity || 0,
-                        parseFloat(item.price) || 0,
-                        idx === 0 ? totalNum : '',   // total transaksi hanya di baris pertama
-                        idx === 0 ? methodLabel : ''
+                        item.name || '-', item.category || '-',
+                        item.quantity || 0, parseFloat(item.price) || 0,
+                        idx === 0 ? totalNum : '', idx === 0 ? methodLabel : ''
                     ]);
                 });
             }
         }
-
         const totalPendapatan = transactions.reduce((s, t) => s + (parseFloat(t.total_amount) || 0), 0);
-        const totalTunai = transactions.filter(t => t.payment_method === 'cash').reduce((s, t) => s + (parseFloat(t.total_amount) || 0), 0);
-        const totalQris = transactions.filter(t => t.payment_method === 'qris').reduce((s, t) => s + (parseFloat(t.total_amount) || 0), 0);
-        const totalKupon = transactions.filter(t => t.payment_method === 'coupon').length;
+        const totalTunai = transactions.filter(t=>t.payment_method==='cash').reduce((s,t)=>s+(parseFloat(t.total_amount)||0),0);
+        const totalQris = transactions.filter(t=>t.payment_method==='qris').reduce((s,t)=>s+(parseFloat(t.total_amount)||0),0);
+        const totalKupon = transactions.filter(t=>t.payment_method==='coupon').length;
 
         const ws1Data = [
             [`LAPORAN JURNAL TRANSAKSI — BALINESE TASTE`],
@@ -2180,189 +2194,69 @@
             ['', '', '', '', '', 'QRIS', totalQris, ''],
             ['', '', '', '', '', `Kupon (${totalKupon} transaksi)`, 0, ''],
         ];
-
         const ws1 = XLSX.utils.aoa_to_sheet(ws1Data);
-        ws1['!cols'] = [
-            { wch: 18 }, // No. Transaksi
-            { wch: 22 }, // Tanggal
-            { wch: 28 }, // Nama Menu
-            { wch: 16 }, // Kategori
-            { wch: 6  }, // Qty
-            { wch: 20 }, // Harga Satuan
-            { wch: 22 }, // Total
-            { wch: 14 }, // Metode
-        ];
-        // Format angka di kolom F (harga satuan) & G (total)
-        const headerRow = 3; // 0-indexed: row 4 is header
-        ws1Data.slice(4).forEach((row, i) => {
-            const r = 4 + i;
-            const colF = XLSX.utils.encode_cell({ r, c: 5 });
-            const colG = XLSX.utils.encode_cell({ r, c: 6 });
-            if (ws1[colF] && typeof row[5] === 'number') ws1[colF].z = '#,##0';
-            if (ws1[colG] && typeof row[6] === 'number') ws1[colG].z = '#,##0';
-        });
+        ws1['!cols'] = [{ wch: 18 }, { wch: 22 }, { wch: 28 }, { wch: 16 }, { wch: 6 }, { wch: 20 }, { wch: 22 }, { wch: 14 }];
         XLSX.utils.book_append_sheet(wb, ws1, '1. Jurnal Transaksi');
 
-        // ──────────────────────────────────────────────
-        // SHEET 2: REKAPITULASI PENJUALAN PER MENU
-        // ──────────────────────────────────────────────
+        // Sheet 2: Rekap Per Menu
         const ws2Data = [
             [`REKAPITULASI PENJUALAN PER MENU — BALINESE TASTE`],
-            [`Periode data: semua transaksi tercatat | Dicetak: ${dateStr}`],
-            [],
+            [`Dicetak: ${dateStr}`], [],
             ['No.', 'Nama Menu', 'Kategori', 'Total Terjual (Qty)', 'Pendapatan (Rp)', 'Rata-rata/Transaksi (Rp)'],
         ];
-        let grandTotal = 0;
-        let grandQty = 0;
+        let grandTotal = 0; let grandQty = 0;
         productSales.forEach((item, idx) => {
             const avg = item.totalQuantity > 0 ? Math.round(item.totalRevenue / item.totalQuantity) : 0;
-            ws2Data.push([
-                idx + 1,
-                item.name,
-                item.category || '-',
-                item.totalQuantity,
-                item.totalRevenue,
-                avg
-            ]);
-            grandTotal += item.totalRevenue;
-            grandQty += item.totalQuantity;
+            ws2Data.push([idx + 1, item.name, item.category || '-', item.totalQuantity, item.totalRevenue, avg]);
+            grandTotal += item.totalRevenue; grandQty += item.totalQuantity;
         });
-        ws2Data.push([]);
-        ws2Data.push(['', 'TOTAL', '', grandQty, grandTotal, '']);
-
+        ws2Data.push([]); ws2Data.push(['', 'TOTAL', '', grandQty, grandTotal, '']);
         const ws2 = XLSX.utils.aoa_to_sheet(ws2Data);
-        ws2['!cols'] = [
-            { wch: 5  },
-            { wch: 30 },
-            { wch: 18 },
-            { wch: 20 },
-            { wch: 22 },
-            { wch: 24 },
-        ];
-        // Format angka kolom E (pendapatan) & F (rata-rata)
-        ws2Data.slice(4).forEach((row, i) => {
-            const r = 4 + i;
-            const colE = XLSX.utils.encode_cell({ r, c: 4 });
-            const colF = XLSX.utils.encode_cell({ r, c: 5 });
-            if (ws2[colE] && typeof row[4] === 'number') ws2[colE].z = '#,##0';
-            if (ws2[colF] && typeof row[5] === 'number') ws2[colF].z = '#,##0';
-        });
+        ws2['!cols'] = [{ wch: 5 }, { wch: 30 }, { wch: 18 }, { wch: 20 }, { wch: 22 }, { wch: 24 }];
         XLSX.utils.book_append_sheet(wb, ws2, '2. Rekap Per Menu');
 
-        // ──────────────────────────────────────────────
-        // SHEET 3: RINGKASAN KEUANGAN
-        // ──────────────────────────────────────────────
-        const txByDate = {};
-        transactions.forEach(t => {
-            const d = t.created_at ? t.created_at.slice(0, 10) : 'unknown';
-            if (!txByDate[d]) txByDate[d] = { count: 0, total: 0, cash: 0, qris: 0, coupon: 0 };
-            txByDate[d].count++;
-            txByDate[d].total += parseFloat(t.total_amount) || 0;
-            if (t.payment_method === 'cash') txByDate[d].cash += parseFloat(t.total_amount) || 0;
-            if (t.payment_method === 'qris') txByDate[d].qris += parseFloat(t.total_amount) || 0;
-            if (t.payment_method === 'coupon') txByDate[d].coupon++;
-        });
-
+        // Sheet 3: Ringkasan Keuangan
         const ws3Data = [
             [`RINGKASAN KEUANGAN — BALINESE TASTE`],
-            [`Dicetak: ${dateStr}, ${timeStr} WITA`],
-            [],
+            [`Dicetak: ${dateStr}, ${timeStr} WITA`], [],
             ['=== PENDAPATAN KESELURUHAN ==='],
             ['Total Pendapatan (Rp)', totalPendapatan],
             ['Total Transaksi', transactions.length],
             ['Rata-rata per Transaksi (Rp)', transactions.length > 0 ? Math.round(totalPendapatan / transactions.length) : 0],
-            [],
-            ['=== BREAKDOWN METODE PEMBAYARAN ==='],
+            [], ['=== BREAKDOWN METODE PEMBAYARAN ==='],
             ['Metode', 'Jumlah Transaksi', 'Total Pendapatan (Rp)', '% dari Total'],
             ['Tunai', transactions.filter(t=>t.payment_method==='cash').length, totalTunai, totalPendapatan > 0 ? +((totalTunai/totalPendapatan)*100).toFixed(1) : 0],
             ['QRIS', transactions.filter(t=>t.payment_method==='qris').length, totalQris, totalPendapatan > 0 ? +((totalQris/totalPendapatan)*100).toFixed(1) : 0],
             ['Kupon', totalKupon, 0, '-'],
-            [],
-            ['=== PENDAPATAN HARIAN ==='],
-            ['Tanggal', 'Jumlah Transaksi', 'Tunai (Rp)', 'QRIS (Rp)', 'Kupon (qty)', 'Total Hari (Rp)'],
-            ...Object.entries(txByDate)
-                .sort(([a], [b]) => a.localeCompare(b))
-                .map(([date, d]) => [
-                    new Date(date).toLocaleDateString('id-ID', { weekday:'short', day:'2-digit', month:'short', year:'numeric' }),
-                    d.count, d.cash, d.qris, d.coupon, d.total
-                ]),
-            [],
-            ['=== STATISTIK KUPON ==='],
+            [], ['=== STATISTIK KUPON ==='],
             ['Total Kupon Diterbitkan', coupons.length],
             ['Sudah Dipakai', coupons.filter(c => c.status === 'dipakai').length],
             ['Belum Dipakai', coupons.filter(c => c.status === 'belum dipakai').length],
         ];
-
         const ws3 = XLSX.utils.aoa_to_sheet(ws3Data);
-        ws3['!cols'] = [
-            { wch: 34 },
-            { wch: 20 },
-            { wch: 20 },
-            { wch: 16 },
-            { wch: 14 },
-            { wch: 20 },
-        ];
-        // Format angka di ringkasan keuangan
-        [[4,1],[5,1],[6,1],[10,2],[11,2],[12,2]].forEach(([r, c]) => {
-            const addr = XLSX.utils.encode_cell({ r, c });
-            if (ws3[addr] && typeof ws3Data[r]?.[c] === 'number') ws3[addr].z = '#,##0';
-        });
-        // Format kolom harian
-        const dailyStart = 16;
-        ws3Data.slice(dailyStart).forEach((row, i) => {
-            const r = dailyStart + i;
-            [2, 3, 5].forEach(c => {
-                const addr = XLSX.utils.encode_cell({ r, c });
-                if (ws3[addr] && typeof row[c] === 'number') ws3[addr].z = '#,##0';
-            });
-        });
+        ws3['!cols'] = [{ wch: 34 }, { wch: 20 }, { wch: 20 }, { wch: 16 }];
         XLSX.utils.book_append_sheet(wb, ws3, '3. Ringkasan Keuangan');
 
-        // ──────────────────────────────────────────────
-        // SHEET 4: DATA PRODUK (stok & info)
-        // ──────────────────────────────────────────────
+        // Sheet 4: Data Produk
         const ws4Data = [
             [`DATA PRODUK — BALINESE TASTE`],
-            [`Per tanggal: ${dateStr}`],
-            [],
+            [`Per tanggal: ${dateStr}`], [],
             ['No.', 'Nama Produk', 'Kategori', 'Harga Jual (Rp)', 'Stok Tersisa', 'Status Stok'],
         ];
         products.forEach((p, idx) => {
             const stockStatus = p.stock <= 0 ? 'Habis' : p.stock <= 5 ? 'Menipis' : 'Tersedia';
-            ws4Data.push([
-                idx + 1,
-                p.name || '-',
-                p.category || '-',
-                parseFloat(p.price) || 0,
-                p.stock || 0,
-                stockStatus
-            ]);
+            ws4Data.push([idx + 1, p.name || '-', p.category || '-', parseFloat(p.price) || 0, p.stock || 0, stockStatus]);
         });
-
         const ws4 = XLSX.utils.aoa_to_sheet(ws4Data);
-        ws4['!cols'] = [
-            { wch: 5  },
-            { wch: 30 },
-            { wch: 18 },
-            { wch: 20 },
-            { wch: 14 },
-            { wch: 14 },
-        ];
-        ws4Data.slice(4).forEach((row, i) => {
-            const r = 4 + i;
-            const colD = XLSX.utils.encode_cell({ r, c: 3 });
-            if (ws4[colD] && typeof row[3] === 'number') ws4[colD].z = '#,##0';
-        });
+        ws4['!cols'] = [{ wch: 5 }, { wch: 30 }, { wch: 18 }, { wch: 20 }, { wch: 14 }, { wch: 14 }];
         XLSX.utils.book_append_sheet(wb, ws4, '4. Data Produk');
 
-        // ──────────────────────────────────────────────
-        // EXPORT
-        // ──────────────────────────────────────────────
         const fileName = `laporan_balinese_taste_${now.toISOString().slice(0,10)}.xlsx`;
         XLSX.writeFile(wb, fileName);
         showNotification('Export Excel berhasil! 4 sheet tersedia.', 'success');
     };
 
+    // ===== EXPORT PDF =====
     window.exportToPDF = async function() {
         if (typeof window.jspdf === 'undefined') { showNotification('Library PDF tidak tersedia', 'error'); return; }
         const productSales = await getProductSalesDetails();
